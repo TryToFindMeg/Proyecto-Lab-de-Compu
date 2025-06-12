@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tienda de Museo</title>
+    <link rel="stylesheet" href="stylejava.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Tienda de Regalos</h1>
+            <p>Colección exclusiva de los mejores museos del mundo</p>
+        </header>
+
+        <main>
+            <section class="shop-section">
+                <h2>Selecciona tu producto</h2>
+                
+                <div class="selection-container">
+                    <div class="selector-group">
+                        <label for="artist-select">Artista:</label>
+                        <select id="artist-select">
+                            <option value="">Selecciona un artista</option>
+                            <option value="van-gogh">Vincent van Gogh</option>
+                            <option value="monet">Claude Monet</option>
+                            <option value="picasso">Pablo Picasso</option>
+                            <option value="da-vinci">Leonardo da Vinci</option>
+                            <option value="hokusai">Katsushika Hokusai</option>
+                        </select>
+                    </div>
+
+                    <div class="selector-group">
+                        <label for="product-select">Tipo de producto:</label>
+                        <select id="product-select">
+                            <option value="">Selecciona un producto</option>
+                            <option value="poster">Póster</option>
+                            <option value="mug">Taza</option>
+                            <option value="tshirt">Tote bag</option>
+                            <option value="notebook">Libreta</option>
+                            <option value="magnet">Imán</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="product-display">
+                    <div class="product-image">
+                        <div id="placeholder-image" class="image-placeholder">
+                            <span>Selecciona artista y producto para ver la obra</span>
+                        </div>
+                        <img id="product-img" style="display: none;" alt="Producto seleccionado">
+                    </div>
+                    
+                    <div class="product-info">
+                        <h3 id="product-name">Nombre del producto</h3>
+                        <p id="product-description">Descripción del producto aparecerá aquí</p>
+                        <div class="price-section">
+                            <span class="price" id="product-price">€0.00</span>
+                        </div>
+                        <button id="add-to-cart" class="add-to-cart-btn" disabled>
+                            Añadir al carrito
+                        </button>
+                    </div>
+                </div>
+            </section>
+
+            <section class="cart-section">
+                <h2>Carrito de compras</h2>
+                <div id="cart-items" class="cart-items">
+                    <p class="empty-cart">Su carrito está vacío</p>
+                </div>
+                <div class="cart-total">
+                    <strong>Total: <span id="cart-total">€0.00</span></strong>
+                </div>
+                <button id="checkout-btn" class="checkout-btn" disabled>Proceder al pago</button>
+            </section>
+        </main>
+    </div>
+
+    <script>
+
+const products = {
+    'van-gogh': {
+        name: 'Vincent van Gogh',
+        museum: 'Metropolitan Museum of Art',
+        items: {
+            'poster': { 
+                name: 'Póster "La Noche Estrellada"', 
+                price: 15.99, 
+                description: 'Reproducción de alta calidad de la obra maestra de Van Gogh en papel premium.',
+                image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg/300px-Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg'
+            },
+            'mug': { 
+                name: 'Taza "Girasoles"', 
+                price: 12.50, 
+                description: 'Taza de cerámica con el famoso diseño de los girasoles de Van Gogh.',
+                image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Vincent_Willem_van_Gogh_127.jpg/300px-Vincent_Willem_van_Gogh_127.jpg'
+            },
+            'tshirt': { 
+                name: 'Tote bag "Autorretrato"', 
+                price: 24.99, 
+                description: 'Bolsa con el autorretrato del artista.',
+                image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Vincent_van_Gogh_-_Self-Portrait_-_Google_Art_Project.jpg/300px-Vincent_van_Gogh_-_Self-Portrait_-_Google_Art_Project.jpg'
+            },
+            'notebook': { 
+                name: 'Libreta "Campo de Trigo"', 
+                price: 9.99, 
+                description: 'Libreta con tapa dura ilustrada con paisajes de Van Gogh.',
+                image: 'https://upload.wikimedia.org/wikipedia/commons/6/63/Vincent_van_Gogh_-_Wheat_Field_with_Cypresses_-_Google_Art_Project.jpg'
+            },
+            'magnet': { 
+                name: 'Imán "La Noche Estrellada"', 
+                price: 4.99, 
+                description: 'Imán de nevera con el icónico cielo estrellado de Van Gogh.',
+                image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg/300px-Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg'
+            }
+        }
+    },
+    'monet': {
+        name: 'Claude Monet',
+        museum: 'Louvre',
+        items: {
+            'poster': { 
+                name: 'Póster "Nenúfares"', 
+                price: 16.99, 
+                description: 'Impresión de los famosos nenúfares de Monet en papel de museo.',
+                image: 'https://content-historia.nationalgeographic.com.es/medio/2024/03/22/ma-379224_146d0603_240322085703_1280x797.jpg'
+            },
+            'mug': { 
+                name: 'Taza "Catedral de Rouen"', 
+                price: 13.50, 
+                description: 'Taza elegante con la serie de la catedral de Rouen.',
+                image: 'https://historia-arte.com/_/eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpbSI6WyJcL2FydHdvcmtcL2ltYWdlRmlsZVwvNWQ0NmMxODIwOThiMy5qcGciLCJyZXNpemUsMTUwMHxmb3JtYXQsd2VicCJdfQ.2a6mTb4Is6MkdaEeA-brlnYbbw_8JSeBfN4AFO4c8M4.webp'
+            },
+            'tshirt': { 
+                name: 'Tote bag "Impresión: Sol Naciente"', 
+                price: 26.99, 
+                description: 'Bolsa premium con la obra que dio nombre al impresionismo.',
+                image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Monet_-_Impression%2C_Sunrise.jpg/300px-Monet_-_Impression%2C_Sunrise.jpg'
+            },
+            'notebook': { 
+                name: 'Libreta "Jardín de Giverny"', 
+                price: 11.99, 
+                description: 'Libreta inspirada en el jardín personal de Monet.',
+                image: 'https://www.descubrirelarte.es/wp-content/uploads/2018/06/Monet-giverny-peinture.jpg'
+            },
+            'magnet': { 
+                name: 'Imán "Nenúfares"', 
+                price: 5.99, 
+                description: 'Imán decorativo con los delicados nenúfares de Monet.',
+                image: 'https://media.admagazine.com/photos/64530b2f73d7f735d6aa5430/master/w_2560%2Cc_limit/lirios-monet.jpg'
+            }
+        }
+    },
+    'picasso': {
+        name: 'Pablo Picasso',
+        museum: 'Louvre',
+        items: {
+            'poster': { 
+                name: 'Póster "Las Señoritas de Avignon"', 
+                price: 18.99, 
+                description: 'Reproducción de la revolucionaria obra cubista de Picasso.',
+                image: 'https://upload.wikimedia.org/wikipedia/en/thumb/4/4c/Les_Demoiselles_d%27Avignon.jpg/300px-Les_Demoiselles_d%27Avignon.jpg'
+            },
+            'mug': { 
+                name: 'Taza "Guernica"', 
+                price: 14.99, 
+                description: 'Taza conmemorativa con el poderoso mensaje de Guernica.',
+                image: 'https://upload.wikimedia.org/wikipedia/en/thumb/7/74/PicassoGuernica.jpg/300px-PicassoGuernica.jpg'
+            },
+            'tshirt': { 
+                name: 'Tote bag "Período Azul"', 
+                price: 27.99, 
+                description: 'Bolsa del famoso período azul de Picasso.',
+                image: 'https://masdearte.com/media/reb_picassoazul1-1024x858.jpg'
+            },
+            'notebook': { 
+                name: 'Libreta "Cubismo"', 
+                price: 12.99, 
+                description: 'Libreta con diseños geométricos inspirados en el cubismo.',
+                image: 'https://upload.wikimedia.org/wikipedia/commons/1/18/Juan_Gris_-_Portrait_of_Pablo_Picasso_-_Google_Art_Project.jpg'
+            },
+            'magnet': { 
+                name: 'Imán "Paloma de la Paz"', 
+                price: 5.49, 
+                description: 'Imán con el símbolo de paz más famoso de Picasso.',
+                image: 'https://3minutosdearte.com/wp-content/uploads/2020/10/Paloma-de-la-paz-1949.jpg'
+            }
+        }
+    },
+    'da-vinci': {
+        name: 'Leonardo da Vinci',
+        museum: 'Louvre',
+        items: {
+            'poster': { 
+                name: 'Póster "La Mona Lisa"', 
+                price: 19.99, 
+                description: 'La sonrisa más famosa del mundo en una reproducción de lujo.',
+                image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Mona_Lisa%2C_by_Leonardo_da_Vinci%2C_from_C2RMF_retouched.jpg/300px-Mona_Lisa%2C_by_Leonardo_da_Vinci%2C_from_C2RMF_retouched.jpg'
+            },
+            'mug': { 
+                name: 'Taza "La Última Cena"', 
+                price: 15.99, 
+                description: 'Taza con el fresco más conocido de Da Vinci.',
+                image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4b/%C3%9Altima_Cena_-_Da_Vinci_5.jpg/300px-%C3%9Altima_Cena_-_Da_Vinci_5.jpg'
+            },
+            'tshirt': { 
+                name: 'Tote bag "Hombre de Vitruvio"', 
+                price: 25.99, 
+                description: 'Tote bag con el icónico dibujo de las proporciones humanas.',
+                image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/2/22/Da_Vinci_Vitruve_Luc_Viatour.jpg/300px-Da_Vinci_Vitruve_Luc_Viatour.jpg'
+            },
+            'notebook': { 
+                name: 'Libreta "Códice Leicester"', 
+                price: 13.99, 
+                description: 'Libreta inspirada en los estudios anatomicos de Leonardo.',
+                image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQnVBt6x1lV50sVpr2Kr49JhWlmVPtuzlxrbw&s'
+            },
+            'magnet': { 
+                name: 'Imán "Mona Lisa"', 
+                price: 6.99, 
+                description: 'La enigmática sonrisa de la Gioconda en formato imán.',
+                image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ec/Mona_Lisa%2C_by_Leonardo_da_Vinci%2C_from_C2RMF_retouched.jpg/300px-Mona_Lisa%2C_by_Leonardo_da_Vinci%2C_from_C2RMF_retouched.jpg'
+            }
+        }
+    },
+    'hokusai': {
+        name: 'Katsushika Hokusai',
+        museum: 'British Museum',
+        items: {
+            'poster': { 
+                name: 'Póster "La Gran Ola"', 
+                price: 17.99, 
+                description: 'La icónica ola japonesa en una impresión de alta calidad.',
+                image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/The_Great_Wave_off_Kanagawa.jpg/300px-The_Great_Wave_off_Kanagawa.jpg'
+            },
+            'mug': { 
+                name: 'Taza "36 Vistas del Monte Fuji"', 
+                price: 13.99, 
+                description: 'Taza con paisajes japoneses tradicionales de Hokusai.',
+                image: 'https://web-japan.org/trends/11_fashion/images/fas201910_hokusai01.jpg'
+            },
+            'tshirt': { 
+                name: 'Tote bag "Arte Ukiyo-e"', 
+                price: 24.99, 
+                description: 'Bolsa con el estilo tradicional japonés ukiyo-e.',
+                image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Ejiri_in_the_Suruga_province.jpg/1200px-Ejiri_in_the_Suruga_province.jpg'
+            },
+            'notebook': { 
+                name: 'Libreta "Paisajes de Japón"', 
+                price: 10.99, 
+                description: 'Libreta decorada con hermosos paisajes nipones.',
+                image: 'https://images.fineartamerica.com/images-medium-large-5/poem-by-sarumaru-dayu-katsushika-hokusai.jpg'
+            },
+            'magnet': { 
+                name: 'Imán "La Gran Ola"', 
+                price: 4.99, 
+                description: 'La ola más famosa del arte japonés en tu heladera.',
+                image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/The_Great_Wave_off_Kanagawa.jpg/300px-The_Great_Wave_off_Kanagawa.jpg'
+            }
+        }
+    }
+};
+
+// Variables globales
+let cart = [];
+let cartTotal = 0;
+
+// Referencias a elementos
+const artistSelect = document.getElementById('artist-select');
+const productSelect = document.getElementById('product-select');
+const productImg = document.getElementById('product-img');
+const placeholderImage = document.getElementById('placeholder-image');
+const productName = document.getElementById('product-name');
+const productDescription = document.getElementById('product-description');
+const productPrice = document.getElementById('product-price');
+const addToCartBtn = document.getElementById('add-to-cart');
+const cartItems = document.getElementById('cart-items');
+const cartTotalElement = document.getElementById('cart-total');
+const checkoutBtn = document.getElementById('checkout-btn');
+
+artistSelect.addEventListener('change', updateProductDisplay);
+productSelect.addEventListener('change', updateProductDisplay);
+addToCartBtn.addEventListener('click', addToCart);
+checkoutBtn.addEventListener('click', checkout);
+
+// Función para actualizar la visualización del producto
+function updateProductDisplay() {
+    const selectedArtist = artistSelect.value;
+    const selectedProduct = productSelect.value;
+    
+    if (selectedArtist && selectedProduct) {
+        const product = products[selectedArtist].items[selectedProduct];
+        const artist = products[selectedArtist];
+        
+        // Mostrar imagen real
+        placeholderImage.style.display = 'none';
+        productImg.style.display = 'block';
+        productImg.src = product.image;
+        productImg.alt = product.name;
+        
+        // Manejar error de carga de imagen
+        productImg.onerror = function() {
+            this.src = `https://via.placeholder.com/300x200/8c5e3c/ffffff?text=${encodeURIComponent(product.name)}`;
+        };
+        
+        // Actualizar información del producto
+        productName.textContent = product.name;
+        productDescription.textContent = `${product.description} (${artist.museum})`;
+        productPrice.textContent = `€${product.price.toFixed(2)}`;
+        
+        // Habilitar botón
+        addToCartBtn.disabled = false;
+    } else {
+        // Ocultar imagen y mostrar placeholder
+        placeholderImage.style.display = 'flex';
+        productImg.style.display = 'none';
+        
+        // Resetear información
+        productName.textContent = 'Nombre del producto';
+        productDescription.textContent = 'Descripción del producto';
+        productPrice.textContent = '€0.00';
+        
+        // Deshabilitar botón
+        addToCartBtn.disabled = true;
+    }
+}
+
+// Función para añadir al carrito
+function addToCart() {
+    const selectedArtist = artistSelect.value;
+    const selectedProduct = productSelect.value;
+    
+    if (selectedArtist && selectedProduct) {
+        const product = products[selectedArtist].items[selectedProduct];
+        const artist = products[selectedArtist];
+        
+        const cartItem = {
+            id: Date.now() + Math.random(),
+            artistId: selectedArtist,
+            productId: selectedProduct,
+            name: product.name,
+            artist: artist.name,
+            museum: artist.museum,
+            price: product.price,
+            image: product.image
+        };
+        
+        cart.push(cartItem);
+        updateCartDisplay();
+        
+        // Feedback visual
+        const originalText = addToCartBtn.textContent;
+        addToCartBtn.textContent = '¡Añadido!';
+        
+        setTimeout(() => {
+            addToCartBtn.textContent = originalText;
+            addToCartBtn.style.backgroundColor = '';
+        }, 1500);
+        
+        // Animación sutil
+        addToCartBtn.style.transform = 'scale(0.95)';
+        setTimeout(() => {
+            addToCartBtn.style.transform = '';
+        }, 150);
+    }
+}
+
+// Función para actualizar la visualización del carrito
+function updateCartDisplay() {
+    if (cart.length === 0) {
+        cartItems.innerHTML = '<p class="empty-cart">Tu carrito está vacío</p>';
+        cartTotal = 0;
+        checkoutBtn.disabled = true;
+    } else {
+        cartItems.innerHTML = '';
+        cartTotal = 0;
+        
+        cart.forEach(item => {
+            const cartItemElement = document.createElement('div');
+            cartItemElement.className = 'cart-item';
+            cartItemElement.innerHTML = `
+                <div class="cart-item-info">
+                    <div class="cart-item-name">${item.name}</div>
+                    <div class="cart-item-details">por ${item.artist} - ${item.museum}</div>
+                </div>
+                <div class="cart-item-price">€${item.price.toFixed(2)}</div>
+                <button class="remove-btn" onclick="removeFromCart('${item.id}')">Eliminar</button>
+            `;
+            cartItems.appendChild(cartItemElement);
+            cartTotal += item.price;
+        });
+        
+        checkoutBtn.disabled = false;
+    }
+    
+    cartTotalElement.textContent = `€${cartTotal.toFixed(2)}`;
+}
+
+// Función para eliminar del carrito
+function removeFromCart(itemId) {
+    cart = cart.filter(item => item.id != itemId);
+    updateCartDisplay();
+}
+
+// Función de checkout mejorada
+function checkout() {
+    if (cart.length > 0) {
+        const itemsList = cart.map(item => `• ${item.name} - €${item.price.toFixed(2)}`).join('\n');
+        
+        const confirmPurchase = confirm(`¿Confirmar compra?`);
+        
+        if (confirmPurchase) {
+            // Simulación de procesamiento
+            checkoutBtn.textContent = 'Procesando...';
+            checkoutBtn.disabled = true;
+            
+            setTimeout(() => {
+                alert(`¡Compra exitosa! 🎉\n\nGracias por tu compra. ^_^`);
+                
+                // Limpiar carrito
+                cart = [];
+                updateCartDisplay();
+                
+                // Reset selecciones
+                artistSelect.value = '';
+                productSelect.value = '';
+                updateProductDisplay();
+                
+                checkoutBtn.textContent = 'Proceder al pago';
+            }, 2000);
+        }
+    }
+}
+
+// Inicializar la aplicación
+document.addEventListener('DOMContentLoaded', function() {
+    updateProductDisplay();
+    updateCartDisplay();
+});
+
+// Agregar estilos para animaciones
+const style = document.createElement('style');
+style.textContent = `
+    @keyframes slideIn {
+        from { transform: translateX(100%); opacity: 0; }
+        to { transform: translateX(0); opacity: 1; }
+    }
+    
+    .add-to-cart-btn {
+        transition: all 0.3s ease, transform 0.15s ease !important;
+    }
+    
+    #product-img {
+        transition: opacity 0.3s ease;
+    }
+`;
+document.head.appendChild(style);
+    </script>
+</body>
+</html>

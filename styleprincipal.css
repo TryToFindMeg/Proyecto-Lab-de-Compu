@@ -1,0 +1,302 @@
+/* ================================
+   VARIABLES GLOBALES
+================================= */
+:root {
+  --color-bg: #f5f4f0;
+  --color-section: #e0dcd1;
+  --color-text: #2e2e2e;
+  --color-accent: #8c5e3c;
+}
+
+/* ================================
+   ESTILOS GLOBALES
+================================= */
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  background-color: var(--color-bg);
+  font-family: Georgia, serif;
+  color: var(--color-text);
+  display: flex;
+  flex-direction: column;
+}
+
+/* ================================
+   ESTILO TITULO PRINCIPAL
+================================= */
+h1 {
+  text-align: center;
+  color: #fff;
+  font-size: 50px;
+  font-family: 'Georgia', 'Times New Roman', serif;
+  text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.8), 0 0 20px rgba(255, 255, 255, 0.2);
+  background-color: rgba(0, 0, 0, 0.4);
+  padding: 10px 20px;
+  border-radius: 10px;
+  width: fit-content;
+  margin: 30px auto;
+  animation: pulse 3s infinite;
+}
+
+@keyframes pulse {
+  0% { text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.8), 0 0 10px rgba(255, 255, 255, 0.1); }
+  50% { text-shadow: 2px 2px 15px rgba(0, 0, 0, 0.9), 0 0 25px rgba(255, 255, 255, 0.4); }
+  100% { text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.8), 0 0 10px rgba(255, 255, 255, 0.1); }
+}
+
+/* ================================
+   INTERFAZ PRINCIPAL (styleinterfaz)
+================================= */
+.log {
+  text-align: center;
+  font-family: 'Lucida Sans', 'Lucida Grande', sans-serif;
+  font-size: 22px;
+  background-image: url(fondomuseo.jpg);
+  background-size: cover;
+  background-position: center;
+  height: 680px;
+  width: 1475px;
+  color: white;
+  border: 5px solid rgba(255, 255, 255, 0.4);
+  box-shadow: 0 0 20px rgba(0,0,0,0.6);
+  margin: 20px auto;
+}
+
+.log p {
+  background-color: rgba(0, 0, 0, 0.4);
+  color: #fff;
+  padding: 10px 20px;
+  border-radius: 10px;
+  width: fit-content;
+  margin: 15px auto;
+  text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.6);
+  font-size: 20px;
+}
+
+.log input {
+  padding: 6px 10px;
+  border-radius: 5px;
+  border: none;
+  margin-left: 10px;
+  font-size: 16px;
+}
+
+.log button {
+  background-color: rgba(0, 0, 0, 0.6);
+  color: white;
+  padding: 12px 25px;
+  font-size: 18px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.6);
+  box-shadow: 0 0 10px rgba(0,0,0,0.4);
+  transition: background-color 0.3s, transform 0.2s;
+  margin-top: 20px;
+}
+
+.log button:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  transform: scale(1.05);
+}
+
+/* ================================
+   SECCIÓN PIRÁMIDE (styleinterfaz)
+================================= */
+.piramide {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+  margin-top: 50px;
+}
+
+.fila-inferior {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+}
+
+/* Reutilizado en segunda y tercera */
+.opcion {
+  position: relative;
+  width: 320px;
+  height: 320px;
+  background-size: cover;
+  background-position: center;
+  border-radius: 12px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  cursor: pointer;
+}
+
+.opcion:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+.opcion h2 {
+  position: relative;
+  color: white;
+  font-size: 1.4rem;
+  z-index: 1;
+  padding: 0 1rem;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.45);
+}
+
+/* ================================
+   PÁGINA SEGUNDA (stylesgunda)
+================================= */
+.contenedor-central {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 40px 20px;
+  border-radius: 20px;
+}
+
+.segunda {
+  background-color: var(--color-section);
+  border-radius: 12px;
+  padding: 3rem;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.segunda h1 {
+  color: var(--color-accent);
+  font-size: 2rem;
+  margin-bottom: 2.5rem;
+}
+
+.fila-horizontal {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+/* ================================
+   PÁGINA TERCERA (styletercera)
+================================= */
+.segunda.larga {
+  max-width: 1100px;
+  height: 1750px;
+  box-sizing: border-box;
+}
+
+.museo-bloque {
+  margin-bottom: 3rem;
+}
+
+.opcion-vertical {
+  position: relative;
+  width: 100%;
+  height: 100px;
+  background-size: cover;
+  background-position: center;
+  border-radius: 12px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.opcion-vertical h2 {
+  position: relative;
+  color: white;
+  font-size: 1.5rem;
+  z-index: 1;
+  padding: 0 1rem;
+}
+
+.descripcion-museo,
+.descripcion-galeria {
+  font-size: 1rem;
+  color: var(--color-text);
+  margin: 0.5rem 0 1.5rem;
+}
+
+.galeria-imagenes {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.imagen-cuadro {
+  width: 270px;
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: #ccc;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.imagen-cuadro img {
+  width: 260px;
+  height: 290px;
+  object-fit: cover;
+  display: block;
+  border-radius: 6px;
+  transition: transform 0.3s ease;
+}
+
+.descripcion-imagen {
+  font-size: 0.9rem;
+  color: #2e2e2e;
+  margin-top: 8px;
+  transition: color 0.3s ease;
+}
+
+.imagen-cuadro:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.imagen-cuadro:hover .descripcion-imagen {
+  color: var(--color-accent);
+}
+
+/* ================================
+   FOOTER COMPARTIDO
+================================= */
+footer {
+  text-align: center;
+  color: #5c5c5c;
+  background-color: bisque;
+  padding: 15px 20px;
+  font-size: 14px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: auto;
+}
+
+/* ================================
+   ENLACES
+================================= */
+a {
+  text-decoration: none;
+  color: inherit;
+}

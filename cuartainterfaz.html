@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interfaz de Dos Cuadros</title>
+  <link rel="stylesheet" href="stylesegunda.css">
+</head>
+<body>
+  <div class="contenedor-central">
+    <div class="segunda">
+      <h1>Salas Extras</h1>
+      <div class="fila-horizontal">
+        <a href="salaIA.html">
+          <div class="opcion fade-in" style="background-image: url('imagen/arteia.jpg');">
+            <div class="overlay"></div>
+            <h2>Arte hecho con... ¿IA?</h2>
+          </div>
+        </a>
+        <a href="salamundos.html">
+          <div class="opcion fade-in" style="background-image: url('imagen/mundofantasia.jpg');">
+            <div class="overlay"></div>
+            <h2>El Arte en Mundos de Fantasía</h2>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const elements = document.querySelectorAll('.fade-in');
+      elements.forEach((el, index) => {
+        setTimeout(() => {
+          el.classList.add('visible');
+        }, 300 * index); // tiempo entre cada aparición
+      });
+    });
+  </script>
+</body>
+</html>
+
+

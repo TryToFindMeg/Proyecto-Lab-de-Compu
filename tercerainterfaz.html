@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Museos</title>
+  <link rel="stylesheet" href="styletercera.css"/>
+</head>
+<body>
+
+  <div class="contenedor-central">
+    <div class="segunda">
+
+      <!-- Louvre -->
+      <div class="museo-bloque">
+        <div class="opcion-vertical" style="background-image: url('imagen/louvre.jpg');">
+          <div class="overlay"></div>
+          <h2>Louvre</h2>
+        </div>
+        <p class="descripcion-museo">El Museo del Louvre es el museo de arte más visitado del mundo, ubicado en París, Francia. Alberga obras como la Mona Lisa y la Venus de Milo.</p>
+
+        <div class="galeria-imagenes">
+          <div class="imagen-cuadro fade-in">
+            <img src="imagen/Leonardo.jpg" alt="Obra 1" />
+            <p class="descripcion-imagen">"La Gioconda (Mona Lisa)" - Leonardo Da Vinci</p>
+          </div>
+          <div class="imagen-cuadro fade-in">
+            <img src="imagen/Paolo.jpg" alt="Obra 2" />
+            <p class="descripcion-imagen">"Las Bodas de Caná" - Paolo Veronese</p>
+          </div>
+          <div class="imagen-cuadro fade-in">
+            <img src="imagen/labalsadelamedusa.jpg" alt="Obra 3" />
+            <p class="descripcion-imagen">"La Balsa de la Medusa" - Théodore Géricault</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Museo Metropolitano -->
+      <div class="museo-bloque">
+        <div class="opcion-vertical" style="background-image: url('imagen/met.jpg');">
+          <div class="overlay"></div>
+          <h2>Museo Metropolitano</h2>
+        </div>
+        <p class="descripcion-museo">El Met, en Nueva York, es uno de los museos más grandes del mundo. Su colección incluye arte de todas las épocas y culturas.</p>
+
+        <div class="galeria-imagenes">
+          <div class="imagen-cuadro fade-in">
+            <img src="imagen/washington.jpg" alt="Obra 1" />
+            <p class="descripcion-imagen">"George Washington cruzando el Delaware" - Emanuel Gottlieb Leutze</p>
+          </div>
+          <div class="imagen-cuadro fade-in">
+            <img src="imagen/juan.jpg" alt="Obra 2" />
+            <p class="descripcion-imagen">"Juan de Pareja" - Diego Velázquez</p>
+          </div>
+          <div class="imagen-cuadro fade-in">
+            <img src="imagen/lanoche.jpg" alt="Obra 3" />
+            <p class="descripcion-imagen">"La Noche Estrellada" - Vincent Van Gogh</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Museo Británico -->
+      <div class="museo-bloque">
+        <div class="opcion-vertical" style="background-image: url('imagen/britanico.jpg');">
+          <div class="overlay"></div>
+          <h2>Museo Británico</h2>
+        </div>
+        <p class="descripcion-museo">Ubicado en Londres, este museo es conocido por su vasta colección de antigüedades, incluyendo la Piedra de Rosetta y momias egipcias.</p>
+
+        <div class="galeria-imagenes">
+          <div class="imagen-cuadro fade-in">
+            <img src="imagen/piedrarosetta.jpg" alt="Obra 1" />
+            <p class="descripcion-imagen">"La Piedra Rosetta"</p>
+          </div>
+          <div class="imagen-cuadro fade-in">
+            <img src="imagen/marmoles.jpg" alt="Obra 2" />
+            <p class="descripcion-imagen">"Los Mármoles de Elgin"</p>
+          </div>
+          <div class="imagen-cuadro fade-in">
+            <img src="imagen/momias.jpg" alt="Obra 3" />
+            <p class="descripcion-imagen">"Momias Egipcias"</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <footer>
+    © 2025 Exploradores de Fantasía. Todos los derechos reservados.
+  </footer>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const elementos = document.querySelectorAll('.fade-in');
+      elementos.forEach((el, i) => {
+        setTimeout(() => {
+          el.classList.add('visible');
+        }, i * 300);
+      });
+    });
+  </script>
+</body>
+</html>
+
+

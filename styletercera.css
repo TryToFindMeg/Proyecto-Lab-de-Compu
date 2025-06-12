@@ -1,0 +1,160 @@
+:root {
+  --color-bg: #f5f4f0;
+  --color-section: #e0dcd1;
+  --color-text: #2e2e2e;
+  --color-accent: #8c5e3c;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: var(--color-bg);
+  font-family: Georgia, serif;
+  color: var(--color-text);
+  display: flex;
+  flex-direction: column;
+}
+
+.contenedor-central {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 40px 20px;
+}
+
+.segunda {
+  background-color: var(--color-section);
+  border-radius: 20px;
+  padding: 3rem;
+  text-align: center;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 1100px;
+  height: 1750px;
+  box-sizing: border-box;
+}
+
+.museo-bloque {
+  margin-bottom: 3rem;
+}
+
+.opcion-vertical {
+  position: relative;
+  width: 100%;
+  height: 100px;
+  background-size: cover;
+  background-position: center;
+  border-radius: 12px;
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.45);
+}
+
+.opcion-vertical h2 {
+  position: relative;
+  color: white;
+  font-size: 1.5rem;
+  z-index: 1;
+  padding: 0 1rem;
+}
+
+.descripcion-museo,
+.descripcion-galeria {
+  font-size: 1rem;
+  color: var(--color-text);
+  margin: 0.5rem 0 1.5rem;
+}
+
+.galeria-imagenes {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.imagen-cuadro {
+  width: 270px;
+  border-radius: 8px;
+  overflow: hidden;
+  background-color: #ccc;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.imagen-cuadro img {
+  width: 260px;
+  height: 290px;
+  object-fit: cover;
+  display: block;
+  border-radius: 6px;
+  transition: transform 0.3s ease;
+}
+
+.descripcion-imagen {
+  font-size: 0.9rem;
+  color: #2e2e2e;
+  margin-top: 8px;
+  transition: color 0.3s ease;
+}
+
+.imagen-cuadro:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+}
+
+.imagen-cuadro:hover .descripcion-imagen {
+  color: var(--color-accent);
+}
+
+footer {
+  text-align: center;
+  color: #5c5c5c;
+  background-color: #ccc;
+  padding: 15px 20px;
+  font-size: 14px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: auto;
+}
+
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 1s ease-out, transform 1s ease-out;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+
