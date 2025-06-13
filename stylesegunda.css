@@ -23,7 +23,7 @@ html, body {
   align-items: center;
   min-height: 100vh;
   padding: 40px 20px;
-  border-radius: 20px; /* <-- Esto le da los bordes redondeados */
+  border-radius: 20px; 
 }
 
 .segunda {
@@ -71,7 +71,7 @@ html, body {
 .overlay {
   position: absolute;
   inset: 0;
-  background-color: rgba(0, 0, 0, 0.45); /* opacidad media */
+  background-color: rgba(0, 0, 0, 0.45); 
 }
 
 .opcion h2 {
